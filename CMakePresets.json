@@ -26,6 +26,25 @@
       }
     },
     {
+      "name": "vcpkg-msbuild-base",
+      "hidden": true,
+      "displayName": "MSBuild VCPkg Base",
+      "description": "Configured via the VS msbuild vcpkg toolchain",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "installDir": "${sourceDir}/package",
+      "generator": "Visual Studio 17 2022",
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": {
+          "type": "FILEPATH",
+          "value": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+        },
+        "HAPI_VERSION_TAG": {
+          "type": "STRING",
+          "value": "$env{HAPI_VERSION_TAG}"
+        }
+      }
+    },
+    {
       "name": "linux-x64-release",
       "inherits": ["vcpkg-base"],
       "cacheVariables": {
@@ -57,7 +76,7 @@
     },
     {
       "name": "windows-x64-release",
-      "inherits": ["vcpkg-base"],
+      "inherits": ["vcpkg-msbuild-base"],
       "cacheVariables": {
         "VCPKG_TARGET_TRIPLET": {
           "type": "STRING",
