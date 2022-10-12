@@ -114,4 +114,4 @@ protobuf_generate(TARGET hapi LANGUAGE grpc GENERATE_EXTENSIONS .grpc.pb.h .grpc
 # Install Library & Headers
 install(TARGETS hapi ARCHIVE DESTINATION lib)
 file(GLOB_RECURSE PROTO_HEADERS ${CMAKE_CURRENT_BINARY_DIR}/*.h)
-install(FILES ${PROTO_HEADERS} TYPE INCLUDE)
+install(FILES ${PROTO_HEADERS} DESTINATION include)

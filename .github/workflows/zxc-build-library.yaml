@@ -53,12 +53,12 @@ jobs:
     strategy:
       matrix:
         include:
-#          - os: ubuntu-latest
-#            preset: ninja-multi-vcpkg
+          - os: ubuntu-latest
+            preset: linux-x64
 #          - os: macos-latest
-#            preset: ninja-multi-vcpkg
-          - os: windows-latest
-            preset: windows-x64
+#            preset: macos-x64
+#          - os: windows-latest
+#            preset: windows-x64
     needs:
       - hapi-version
     steps:
