@@ -1,0 +1,74 @@
+name: "ZXC: Build Library"
+on:
+  workflow_call:
+    inputs:
+      hapi-version-tag:
+        type: string
+        required: false
+        default: "v0.30.0"
+
+defaults:
+  run:
+    shell: bash
+
+permissions:
+  contents: read
+
+jobs:
+  hapi-version:
+    name: Version Check
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.version.outputs.tag }}
+    steps:
+      - name: Install Semantic Version Tools
+        run: |
+          echo "::group::Download SemVer Binary"
+          sudo curl -L -o /usr/local/bin/semver https://raw.githubusercontent.com/fsaintjacques/semver-tool/master/src/semver
+          echo "::endgroup::"
+          echo "::group::Change SemVer Binary Permissions"
+          sudo chmod -v +x /usr/local/bin/semver
+          echo "::endgroup::"
+          echo "::group::Show SemVer Binary Version Info"
+          semver --version
+          echo "::endgroup::"
+    
+      - name: Validate HAPI Version Tag
+        id: version
+        run: |
+          HAPI_VERSION="${{ inputs.hapi-version-tag }}"
+          VALID_VERSION="$(semver validate "${HAPI_VERSION}")"
+
+          if [[ "${VALID_VERSION}" != "valid" ]]; then
+            echo "::error title=Version Error::The supplied hapi-version-tag parameter (${HAPI_VERSION}) is invalid and does not conform to the semantic versioning specifications."
+            exit 2
+          fi
+          
+          [[ "${HAPI_VERSION}" == v* ]] || HAPI_VERSION="v${HAPI_VERSION}"
+          echo "::set-output name=number::${HAPI_VERSION}"
+
+  build:
+    name: Build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    needs:
+      - hapi-version
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Install CMake & Ninja
+        uses: lukka/get-cmake@latest
+
+      - name: Setup VCPkg
+        uses: lukka/run-vcpkg@v10
+
+      - name: CMake Build
+        uses: lukka/run-cmake@v10
+        with:
+          configurePreset: ninja-multi-vcpkg
+          buildPreset: ninja-multi-vcpkg

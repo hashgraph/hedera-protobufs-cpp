@@ -1,0 +1,10 @@
+{
+  "name": "hedera-protobufs-cpp",
+  "version-string": "0.30.0",
+  "dependencies": [
+    "zlib",
+    "openssl",
+    "protobuf",
+    "grpc"
+  ]
+}
