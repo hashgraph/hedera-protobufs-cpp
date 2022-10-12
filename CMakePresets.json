@@ -22,10 +22,6 @@
         "HAPI_VERSION_TAG": {
           "type": "STRING",
           "value": "$env{HAPI_VERSION_TAG}"
-        },
-        "VCPKG_BINARY_SOURCES": {
-          "type": "STRING",
-          "value": "clear"
         }
       }
     },
@@ -65,7 +61,7 @@
       "cacheVariables": {
         "VCPKG_TARGET_TRIPLET": {
           "type": "STRING",
-          "value": "x64-windows-release"
+          "value": "x64-windows-static"
         }
       }
     }
