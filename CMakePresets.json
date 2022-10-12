@@ -19,6 +19,10 @@
           "type": "FILEPATH",
           "value": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
         },
+        "CMAKE_BUILD_TYPE": {
+          "type": "STRING",
+          "value": "Release"
+        },
         "HAPI_VERSION_TAG": {
           "type": "STRING",
           "value": "$env{HAPI_VERSION_TAG}"
@@ -37,6 +41,10 @@
         "CMAKE_TOOLCHAIN_FILE": {
           "type": "FILEPATH",
           "value": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+        },
+        "CMAKE_BUILD_TYPE": {
+          "type": "STRING",
+          "value": "Release"
         },
         "HAPI_VERSION_TAG": {
           "type": "STRING",

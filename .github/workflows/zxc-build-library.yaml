@@ -96,5 +96,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: hapi-library-${{ runner.os }}-${{ steps.sha.outputs.short }}
-          path: package/**
+          path: package/
           if-no-files-found: warn
