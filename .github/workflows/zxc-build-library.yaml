@@ -58,7 +58,7 @@ jobs:
 #          - os: macos-latest
 #            preset: ninja-multi-vcpkg
           - os: windows-latest
-            preset: msbuild-vcpkg
+            preset: windows-x64
     needs:
       - hapi-version
     steps:
@@ -82,7 +82,7 @@ jobs:
       - name: CMake Build (Release)
         uses: lukka/run-cmake@v10
         with:
-          configurePreset: ${{ matrix.preset }}
+          configurePreset: ${{ matrix.preset }}-release
           buildPreset: ${{ matrix.preset }}-release
 
       - name: Compute Short SHA

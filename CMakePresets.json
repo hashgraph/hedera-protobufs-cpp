@@ -7,9 +7,10 @@
   },
   "configurePresets": [
     {
-      "name": "ninja-multi-vcpkg",
-      "displayName": "Ninja Multi-Config Configure Settings",
-      "description": "Configure with vcpkg toolchain",
+      "name": "vcpkg-base",
+      "hidden": true,
+      "displayName": "VCPkg Base Build",
+      "description": "Configured via the vcpkg toolchain",
       "binaryDir": "${sourceDir}/build/${presetName}",
       "installDir": "${sourceDir}/package",
       "generator": "Ninja Multi-Config",
@@ -21,78 +22,89 @@
         "HAPI_VERSION_TAG": {
           "type": "STRING",
           "value": "$env{HAPI_VERSION_TAG}"
+        },
+        "VCPKG_BINARY_SOURCES": {
+          "type": "STRING",
+          "value": "clear"
         }
       }
     },
     {
-      "name": "msbuild-vcpkg",
-      "displayName": "MSBuild (vcpkg toolchain) Configure Settings",
-      "description": "Configure with VS generators and with vcpkg toolchain",
-      "binaryDir": "${sourceDir}/build/${presetName}",
-      "installDir": "${sourceDir}/package",
-      "generator": "Visual Studio 17 2022",
-      "architecture": {
-        "strategy": "set",
-        "value": "x64"
-      },
+      "name": "linux-x64-release",
+      "inherits": ["vcpkg-base"],
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": {
-          "type": "FILEPATH",
-          "value": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
-        },
-        "HAPI_VERSION_TAG": {
+        "VCPKG_TARGET_TRIPLET": {
           "type": "STRING",
-          "value": "$env{HAPI_VERSION_TAG}"
+          "value": "x64-linux-release"
+        }
+      }
+    },
+    {
+      "name": "macos-x64-release",
+      "inherits": ["vcpkg-base"],
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": {
+          "type": "STRING",
+          "value": "x64-osx-release"
+        }
+      }
+    },
+    {
+      "name": "macos-arm64-release",
+      "inherits": ["vcpkg-base"],
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": {
+          "type": "STRING",
+          "value": "arm64-osx"
+        }
+      }
+    },
+    {
+      "name": "windows-x64-release",
+      "inherits": ["vcpkg-base"],
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": {
+          "type": "STRING",
+          "value": "x64-windows-release"
         }
       }
     }
   ],
   "buildPresets": [
     {
-      "name": "ninja-multi-vcpkg-debug",
-      "configurePreset": "ninja-multi-vcpkg",
-      "displayName": "Build ninja-multi-vcpkg",
-      "description": "Build ninja-multi-vcpkg Configurations",
-      "configuration": "Debug",
-      "jobs": 8,
-      "targets": ["install"]
-    },
-    {
-      "name": "ninja-multi-vcpkg-release",
-      "configurePreset": "ninja-multi-vcpkg",
+      "name": "linux-x64-release",
+      "configurePreset": "linux-x64-release",
       "displayName": "Build ninja-multi-vcpkg",
       "description": "Build ninja-multi-vcpkg Configurations",
       "configuration": "Release",
-      "jobs": 8,
       "targets": ["install"]
     },
     {
-      "name": "msbuild-vcpkg-debug",
-      "configurePreset": "msbuild-vcpkg",
-      "displayName": "Build MSBuild",
-      "description": "Build with MSBuild (VS)",
-      "configuration": "Debug",
-      "jobs": 8,
-      "targets": ["install"]
-    },
-    {
-      "name": "msbuild-vcpkg-release",
-      "configurePreset": "msbuild-vcpkg",
-      "displayName": "Build MSBuild",
-      "description": "Build with MSBuild (VS)",
+      "name": "macos-x64-release",
+      "configurePreset": "macos-x64-release",
+      "displayName": "Build ninja-multi-vcpkg",
+      "description": "Build ninja-multi-vcpkg Configurations",
       "configuration": "Release",
-      "jobs": 8,
+      "targets": ["install"]
+    },
+    {
+      "name": "macos-arm64-release",
+      "configurePreset": "macos-arm64-release",
+      "displayName": "Build ninja-multi-vcpkg",
+      "description": "Build ninja-multi-vcpkg Configurations",
+      "configuration": "Release",
+      "targets": ["install"]
+    },
+    {
+      "name": "windows-x64-release",
+      "configurePreset": "windows-x64-release",
+      "displayName": "Build ninja-multi-vcpkg",
+      "description": "Build ninja-multi-vcpkg Configurations",
+      "configuration": "Release",
       "targets": ["install"]
     }
   ],
   "testPresets": [
-    {
-      "name": "ninja-multi-vcpkg",
-      "configurePreset": "ninja-multi-vcpkg"
-    },
-    {
-      "name": "default-vs",
-      "configurePreset": "msbuild-vcpkg"
-    }
+
   ]
 }
