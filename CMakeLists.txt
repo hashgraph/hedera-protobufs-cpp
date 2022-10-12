@@ -4,6 +4,8 @@ project(hedera-protobufs-cpp VERSION 0.1.0 DESCRIPTION "Hedera C++ Protobuf Libr
 set (CMAKE_CXX_STANDARD 20)
 set (CMAKE_CXX_STANDARD_REQUIRED 14)
 
+set(CMAKE_INSTALL_PREFIX  ${CMAKE_INSTALL_PREFIX}/${CMAKE_HOST_SYSTEM_NAME}/${CMAKE_HOST_SYSTEM_PROCESSOR})
+
 include(FetchContent)
 
 # Use gRPC library source
@@ -30,7 +32,7 @@ FetchContent_MakeAvailable(HProto)
 # Clean and update the protobuf definitions
 set(PROTO_SRC ${PROJECT_SOURCE_DIR}/src/proto)
 file(GLOB_RECURSE PROTO_FILES ${PROTO_SRC}/*.proto)
-if(DEFINED PROTO_FILES)
+if(PROTO_FILES)
     file(REMOVE ${PROTO_FILES})
 endif()
 file(INSTALL ${hproto_SOURCE_DIR}/services/ DESTINATION ${PROTO_SRC})

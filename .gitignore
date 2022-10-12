@@ -884,5 +884,8 @@ secring.*
 ### Ignore Generated Source
 src/proto/*.proto
 
+### Ignore Generated Package Files
+package
+
 ### Ignore IDEA files completely
 .idea

@@ -61,6 +61,12 @@ jobs:
         with:
           submodules: true
 
+      - name: Setup Library Package Cache
+        uses: actions/cache@v3
+        with:
+          path: package
+          key: v1-library-packages-ri${{ github.run_id }}-ra${{ github.run_attempt }}-${{ github.sha }}
+
       - name: Install CMake & Ninja
         uses: lukka/get-cmake@latest
 
@@ -71,4 +77,32 @@ jobs:
         uses: lukka/run-cmake@v10
         with:
           configurePreset: ninja-multi-vcpkg
-          buildPreset: ninja-multi-vcpkg
+          buildPreset: ninja-multi-vcpkg-debug
+
+  package:
+    name: Package
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+
+      - name: Setup Library Package Cache
+        uses: actions/cache@v3
+        with:
+          path: package
+          key: v1-library-packages-ri${{ github.run_id }}-ra${{ github.run_attempt }}-${{ github.sha }}
+
+      - name: Compute Short SHA
+        id: sha
+        run: echo "::set-output name=short::$(echo -n "${{ github.sha }}" | cut -c1-8)"
+
+      - name: Attach Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: hapi-library-${{ steps.sha.outputs.short }}
+          path: package/
+          if-no-files-found: warn
