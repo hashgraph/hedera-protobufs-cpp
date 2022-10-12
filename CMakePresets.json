@@ -54,6 +54,7 @@
       "displayName": "Build ninja-multi-vcpkg",
       "description": "Build ninja-multi-vcpkg Configurations",
       "configuration": "Debug",
+      "jobs": 8,
       "targets": ["install"]
     },
     {
@@ -62,6 +63,7 @@
       "displayName": "Build ninja-multi-vcpkg",
       "description": "Build ninja-multi-vcpkg Configurations",
       "configuration": "Release",
+      "jobs": 8,
       "targets": ["install"]
     },
     {
@@ -70,6 +72,7 @@
       "displayName": "Build MSBuild",
       "description": "Build with MSBuild (VS)",
       "configuration": "Debug",
+      "jobs": 8,
       "targets": ["install"]
     },
     {
@@ -78,6 +81,7 @@
       "displayName": "Build MSBuild",
       "description": "Build with MSBuild (VS)",
       "configuration": "Release",
+      "jobs": 8,
       "targets": ["install"]
     }
   ],

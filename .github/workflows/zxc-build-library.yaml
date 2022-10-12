@@ -53,10 +53,10 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: ubuntu-latest
-            preset: ninja-multi-vcpkg
-          - os: macos-latest
-            preset: ninja-multi-vcpkg
+#          - os: ubuntu-latest
+#            preset: ninja-multi-vcpkg
+#          - os: macos-latest
+#            preset: ninja-multi-vcpkg
           - os: windows-latest
             preset: msbuild-vcpkg
     needs:
@@ -67,23 +67,23 @@ jobs:
         with:
           submodules: true
 
-      - name: Setup Library Package Cache
-        uses: actions/cache@v3
-        with:
-          path: package
-          key: v1-library-packages-ri${{ github.run_id }}-ra${{ github.run_attempt }}-${{ github.sha }}
-
       - name: Install CMake & Ninja
         uses: lukka/get-cmake@latest
 
       - name: Setup VCPkg
         uses: lukka/run-vcpkg@v10
 
-      - name: CMake Build
+#      - name: CMake Build (Debug)
+#        uses: lukka/run-cmake@v10
+#        with:
+#          configurePreset: ${{ matrix.preset }}
+#          buildPreset: ${{ matrix.preset }}-debug
+
+      - name: CMake Build (Release)
         uses: lukka/run-cmake@v10
         with:
           configurePreset: ${{ matrix.preset }}
-          buildPreset: ${{ matrix.preset }}-debug
+          buildPreset: ${{ matrix.preset }}-release
 
       - name: Compute Short SHA
         id: sha
