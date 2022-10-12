@@ -52,7 +52,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        includes:
+        include:
           - os: ubuntu-latest
             preset: ninja-multi-vcpkg
           - os: macos-latest
