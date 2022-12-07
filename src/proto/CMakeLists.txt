@@ -113,7 +113,7 @@ protobuf_generate(TARGET hapi LANGUAGE cpp IMPORT_DIRS ${PROTO_SRC})
 protobuf_generate(TARGET hapi LANGUAGE grpc GENERATE_EXTENSIONS .grpc.pb.h .grpc.pb.cc PLUGIN "protoc-gen-grpc=${grpc_cpp_plugin_location}" IMPORT_DIRS ${PROTO_SRC})
 
 # Install Library & Headers
-install(TARGETS hapi ARCHIVE DESTINATION lib)
+install(TARGETS hapi ARCHIVE DESTINATION lib LIBRARY DESTINATION lib CONFIGURATIONS Release)
 
 install(FILES ${ZLIB_LIBRARY_RELEASE} DESTINATION lib)
 install(FILES ${Protobuf_LIBRARY_RELEASE} DESTINATION lib)
@@ -131,10 +131,12 @@ get_target_property(GRPC_LIBRARY gRPC::grpc LOCATION_LIBRARY_OUTPUT_RELEASE)
 get_target_property(GRPC_ADDRESS_SORTING_LIBRARY gRPC::address_sorting LOCATION_LIBRARY_OUTPUT_RELEASE)
 get_target_property(GRPC_GPR_LIBRARY gRPC::gpr LOCATION_LIBRARY_OUTPUT_RELEASE)
 get_target_property(GRPC_PLUGIN_SUPPORT_LIBRARY gRPC::grpc_plugin_support LOCATION_LIBRARY_OUTPUT_RELEASE)
-if (TARGET gRPC::grpcpp_channelz)
+get_target_property(GRPC_UNSECURE_LIBRARY gRPC::grpc_unsecure LOCATION_LIBRARY_OUTPUT_RELEASE)
+
+if(TARGET gRPC::grpcpp_channelz)
     get_target_property(GRPC_PP_CHANNELZ_PROTO_LIBRARY gRPC::grpcpp_channelz LOCATION_LIBRARY_OUTPUT_RELEASE)
 endif()
-get_target_property(GRPC_UNSECURE_LIBRARY gRPC::grpc_unsecure LOCATION_LIBRARY_OUTPUT_RELEASE)
+
 
 install(FILES
             ${GRPC_LIBRARY}
@@ -148,10 +150,12 @@ install(FILES
 get_target_property(GRPC_CPP_LIBRARY gRPC::grpc++ LOCATION_LIBRARY_OUTPUT_RELEASE)
 get_target_property(GRPC_CPP_ALTS_LIBRARY gRPC::grpc++_alts LOCATION_LIBRARY_OUTPUT_RELEASE)
 get_target_property(GRPC_CPP_ERROR_DETAILS_LIBRARY gRPC::grpc++_error_details LOCATION_LIBRARY_OUTPUT_RELEASE)
-if (TARGET gRPC::grpc++_reflection)
+get_target_property(GRPC_CPP_UNSECURE_LIBRARY gRPC::grpc++_unsecure LOCATION_LIBRARY_OUTPUT_RELEASE)
+
+if(TARGET gRPC::grpc++_reflection)
     get_target_property(GRPC_CPP_REFLECTION_LIBRARY gRPC::grpc++_reflection LOCATION_LIBRARY_OUTPUT_RELEASE)
 endif()
-get_target_property(GRPC_CPP_UNSECURE_LIBRARY gRPC::grpc++_unsecure LOCATION_LIBRARY_OUTPUT_RELEASE)
+
 install(FILES
             ${GRPC_CPP_LIBRARY}
             ${GRPC_CPP_ALTS_LIBRARY}
@@ -324,8 +328,6 @@ install(FILES
             ${ABSL_TIME_LIBRARY}
             ${ABSL_TIME_ZONE_LIBRARY}
         DESTINATION lib)
-
-
 
 install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} DESTINATION include FILES_MATCHING PATTERN "*.h")
 install(DIRECTORY ${Protobuf_INCLUDE_DIRS} DESTINATION ${CMAKE_INSTALL_PREFIX})
