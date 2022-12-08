@@ -102,7 +102,7 @@ set(PROTO_FILES
 # End Protobuf Definitions
 
 add_library(hapi STATIC ${PROTO_FILES})
-target_link_libraries(hapi PRIVATE ${Protobuf_LIBRARIES} gRPC::grpc gRPC::grpc++)
+target_link_libraries(hapi PRIVATE protobuf::libprotobuf gRPC::grpc gRPC::grpc++)
 target_include_directories(hapi PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 
 #
@@ -113,7 +113,7 @@ protobuf_generate(TARGET hapi LANGUAGE cpp IMPORT_DIRS ${PROTO_SRC})
 protobuf_generate(TARGET hapi LANGUAGE grpc GENERATE_EXTENSIONS .grpc.pb.h .grpc.pb.cc PLUGIN "protoc-gen-grpc=${grpc_cpp_plugin_location}" IMPORT_DIRS ${PROTO_SRC})
 
 # Install Library & Headers
-install(TARGETS hapi ARCHIVE DESTINATION lib LIBRARY DESTINATION lib RUNTIME DESTINATION bin CONFIGURATIONS Release)
+install(TARGETS hapi ARCHIVE DESTINATION lib LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
 
 #install(FILES ${ZLIB_LIBRARY_RELEASE} DESTINATION lib)
 #install(FILES ${Protobuf_LIBRARY_RELEASE} DESTINATION lib)
