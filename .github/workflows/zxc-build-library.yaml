@@ -17,7 +17,7 @@ permissions:
 jobs:
   hapi-version:
     name: Version Check
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux, xlarge, ephemeral]
     outputs:
       tag: ${{ steps.version.outputs.tag }}
     steps:
@@ -49,11 +49,11 @@ jobs:
 
   build:
     name: Build
-    runs-on: ${{ matrix.os }}
+    runs-on: [self-hosted, ${{ matrix.os }}, xlarge, ephemeral]
     strategy:
       matrix:
         include:
-          - os: ubuntu-latest
+          - os: Linux
             preset: linux-x64
 #          - os: macos-latest
 #            preset: macos-x64
@@ -76,11 +76,11 @@ jobs:
       - name: Setup VCPkg
         uses: lukka/run-vcpkg@v10
 
-#      - name: CMake Build (Debug)
-#        uses: lukka/run-cmake@v10
-#        with:
-#          configurePreset: ${{ matrix.preset }}
-#          buildPreset: ${{ matrix.preset }}-debug
+      - name: CMake Build (Debug)
+        uses: lukka/run-cmake@v10
+        with:
+          configurePreset: ${{ matrix.preset }}
+          buildPreset: ${{ matrix.preset }}-debug
 
       - name: CMake Build (Release)
         uses: lukka/run-cmake@v10
