@@ -45,7 +45,7 @@ jobs:
           fi
           
           [[ "${HAPI_VERSION}" == v* ]] || HAPI_VERSION="v${HAPI_VERSION}"
-          echo "::set-output name=number::${HAPI_VERSION}"
+          echo "number=${HAPI_VERSION}" >> "${GITHUB_OUTPUT}"
 
   build:
     name: Build
@@ -71,6 +71,12 @@ jobs:
         with:
           submodules: true
 
+      - name: Install Linux Prerequisites
+        if: ${{ runner.os == 'Linux' }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pkg-config
+
       - name: Install CMake & Ninja
         uses: lukka/get-cmake@latest
 
@@ -91,7 +97,7 @@ jobs:
 
       - name: Compute Short SHA
         id: sha
-        run: echo "::set-output name=short::$(echo -n "${{ github.sha }}" | cut -c1-8)"
+        run: echo "short=$(echo -n "${{ github.sha }}" | cut -c1-8)" >> "${GITHUB_OUTPUT}"
 
       - name: Attach Artifact
         uses: actions/upload-artifact@v3
