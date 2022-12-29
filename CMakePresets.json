@@ -19,10 +19,6 @@
           "type": "FILEPATH",
           "value": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
         },
-        "CMAKE_BUILD_TYPE": {
-          "type": "STRING",
-          "value": "Release"
-        },
         "HAPI_VERSION_TAG": {
           "type": "STRING",
           "value": "$env{HAPI_VERSION_TAG}"
@@ -42,10 +38,6 @@
           "type": "FILEPATH",
           "value": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
         },
-        "CMAKE_BUILD_TYPE": {
-          "type": "STRING",
-          "value": "Release"
-        },
         "HAPI_VERSION_TAG": {
           "type": "STRING",
           "value": "$env{HAPI_VERSION_TAG}"
@@ -59,6 +51,24 @@
         "VCPKG_TARGET_TRIPLET": {
           "type": "STRING",
           "value": "x64-linux"
+        },
+        "CMAKE_BUILD_TYPE": {
+          "type": "STRING",
+          "value": "Release"
+        }
+      }
+    },
+    {
+      "name": "linux-x64-debug",
+      "inherits": ["vcpkg-base"],
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": {
+          "type": "STRING",
+          "value": "x64-linux"
+        },
+        "CMAKE_BUILD_TYPE": {
+          "type": "STRING",
+          "value": "Debug"
         }
       }
     },
@@ -69,6 +79,24 @@
         "VCPKG_TARGET_TRIPLET": {
           "type": "STRING",
           "value": "x64-osx"
+        },
+        "CMAKE_BUILD_TYPE": {
+          "type": "STRING",
+          "value": "Release"
+        }
+      }
+    },
+    {
+      "name": "macos-x64-debug",
+      "inherits": ["vcpkg-base"],
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": {
+          "type": "STRING",
+          "value": "x64-osx"
+        },
+        "CMAKE_BUILD_TYPE": {
+          "type": "STRING",
+          "value": "Debug"
         }
       }
     },
@@ -79,6 +107,24 @@
         "VCPKG_TARGET_TRIPLET": {
           "type": "STRING",
           "value": "arm64-osx"
+        },
+        "CMAKE_BUILD_TYPE": {
+          "type": "STRING",
+          "value": "Release"
+        }
+      }
+    },
+    {
+      "name": "macos-arm64-debug",
+      "inherits": ["vcpkg-base"],
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": {
+          "type": "STRING",
+          "value": "arm64-osx"
+        },
+        "CMAKE_BUILD_TYPE": {
+          "type": "STRING",
+          "value": "Debug"
         }
       }
     },
@@ -89,6 +135,24 @@
         "VCPKG_TARGET_TRIPLET": {
           "type": "STRING",
           "value": "x64-windows"
+        },
+        "CMAKE_BUILD_TYPE": {
+          "type": "STRING",
+          "value": "Release"
+        }
+      }
+    },
+    {
+      "name": "windows-x64-debug",
+      "inherits": ["vcpkg-msbuild-base"],
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": {
+          "type": "STRING",
+          "value": "x64-windows"
+        },
+        "CMAKE_BUILD_TYPE": {
+          "type": "STRING",
+          "value": "Debug"
         }
       }
     }
@@ -103,11 +167,27 @@
       "targets": ["install"]
     },
     {
+      "name": "linux-x64-debug",
+      "configurePreset": "linux-x64-debug",
+      "displayName": "Build ninja-multi-vcpkg",
+      "description": "Build ninja-multi-vcpkg Configurations",
+      "configuration": "Debug",
+      "targets": ["install"]
+    },
+    {
       "name": "macos-x64-release",
       "configurePreset": "macos-x64-release",
       "displayName": "Build ninja-multi-vcpkg",
       "description": "Build ninja-multi-vcpkg Configurations",
       "configuration": "Release",
+      "targets": ["install"]
+    },
+    {
+      "name": "macos-x64-debug",
+      "configurePreset": "macos-x64-debug",
+      "displayName": "Build ninja-multi-vcpkg",
+      "description": "Build ninja-multi-vcpkg Configurations",
+      "configuration": "Debug",
       "targets": ["install"]
     },
     {
@@ -119,11 +199,27 @@
       "targets": ["install"]
     },
     {
+      "name": "macos-arm64-debug",
+      "configurePreset": "macos-arm64-debug",
+      "displayName": "Build ninja-multi-vcpkg",
+      "description": "Build ninja-multi-vcpkg Configurations",
+      "configuration": "Debug",
+      "targets": ["install"]
+    },
+    {
       "name": "windows-x64-release",
       "configurePreset": "windows-x64-release",
       "displayName": "MSVC Release (x64)",
       "description": "Build MSVC Configurations",
       "configuration": "Release",
+      "targets": ["install"]
+    },
+    {
+      "name": "windows-x64-debug",
+      "configurePreset": "windows-x64-debug",
+      "displayName": "MSVC Debug (x64)",
+      "description": "Build MSVC Configurations",
+      "configuration": "Debug",
       "targets": ["install"]
     }
   ],
