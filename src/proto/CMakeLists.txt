@@ -102,7 +102,7 @@ set(PROTO_FILES
 # End Protobuf Definitions
 
 add_library(hapi STATIC ${PROTO_FILES})
-target_link_libraries(hapi PRIVATE protobuf::libprotobuf gRPC::grpc gRPC::grpc++)
+target_link_libraries(hapi PRIVATE protobuf::libprotobuf gRPC::grpc gRPC::grpc++ OpenSSL::SSL OpenSSL::Crypto)
 target_include_directories(hapi PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 
 #
