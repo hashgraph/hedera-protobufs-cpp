@@ -20,10 +20,10 @@ find_package(re2 CONFIG REQUIRED)
 find_package(c-ares CONFIG REQUIRED)
 find_package(absl CONFIG REQUIRED)
 
-set(HAPI_VERSION_TAG "v0.33.0" CACHE STRING "Use the configured version tag for the Hedera API protobufs")
+set(HAPI_VERSION_TAG "v0.34.0" CACHE STRING "Use the configured version tag for the Hedera API protobufs")
 
 if (HAPI_VERSION_TAG STREQUAL "")
-    set(HAPI_VERSION_TAG "v0.33.0")
+    set(HAPI_VERSION_TAG "v0.34.0")
 endif ()
 
 # Fetch the protobuf definitions
