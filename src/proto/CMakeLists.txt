@@ -55,6 +55,7 @@ set(PROTO_FILES
         network_get_version_info.proto
         network_service.proto
         node_stake_update.proto
+        pbj_custom_options.proto
         query.proto
         query_header.proto
         response.proto
