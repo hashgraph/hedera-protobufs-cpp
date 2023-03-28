@@ -20,10 +20,10 @@ find_package(re2 CONFIG REQUIRED)
 find_package(c-ares CONFIG REQUIRED)
 find_package(absl CONFIG REQUIRED)
 
-set(HAPI_VERSION_TAG "v0.35.0" CACHE STRING "Use the configured version tag for the Hedera API protobufs")
+set(HAPI_VERSION_TAG "v0.34.0" CACHE STRING "Use the configured version tag for the Hedera API protobufs" FORCE)
 
 if (HAPI_VERSION_TAG STREQUAL "")
-    set(HAPI_VERSION_TAG "v0.35.0")
+    set(HAPI_VERSION_TAG "v0.34.0")
 endif ()
 
 # Fetch the protobuf definitions
@@ -41,6 +41,9 @@ file(GLOB_RECURSE PROTO_FILES ${PROTO_SRC}/*.proto)
 if (PROTO_FILES)
     file(REMOVE ${PROTO_FILES})
 endif ()
+file(INSTALL ${hproto_SOURCE_DIR}/mirror/ DESTINATION ${PROTO_SRC})
 file(INSTALL ${hproto_SOURCE_DIR}/services/ DESTINATION ${PROTO_SRC})
+file(INSTALL ${hproto_SOURCE_DIR}/sdk/ DESTINATION ${PROTO_SRC})
+file(INSTALL ${hproto_SOURCE_DIR}/streams/ DESTINATION ${PROTO_SRC})
 
 add_subdirectory(src)
