@@ -1,12 +1,7 @@
 # Begin Protobuf Definitions
 set(PROTO_FILES
-        duration.proto
-        timestamp.proto
+        account_balance_file.proto
         basic_types.proto
-        transaction.proto
-        transaction_body.proto
-        transaction_contents.proto
-        ethereum_transaction.proto
         consensus_create_topic.proto
         consensus_delete_topic.proto
         consensus_get_topic_info.proto
@@ -14,6 +9,8 @@ set(PROTO_FILES
         consensus_submit_message.proto
         consensus_topic_info.proto
         consensus_update_topic.proto
+        contract_action.proto
+        contract_bytecode.proto
         contract_call.proto
         contract_call_local.proto
         contract_create.proto
@@ -21,6 +18,7 @@ set(PROTO_FILES
         contract_get_bytecode.proto
         contract_get_info.proto
         contract_get_records.proto
+        contract_state_change.proto
         contract_update.proto
         crypto_add_live_hash.proto
         crypto_approve_allowance.proto
@@ -37,6 +35,8 @@ set(PROTO_FILES
         crypto_transfer.proto
         crypto_update.proto
         custom_fees.proto
+        duration.proto
+        ethereum_transaction.proto
         exchange_rate.proto
         file_append.proto
         file_create.proto
@@ -51,12 +51,15 @@ set(PROTO_FILES
         get_account_details.proto
         get_by_key.proto
         get_by_solidity_id.proto
+        hash_object.proto
+        mirror_network_service.proto
         network_get_execution_time.proto
         network_get_version_info.proto
         network_service.proto
         node_stake_update.proto
         query.proto
         query_header.proto
+        record_stream_file.proto
         response.proto
         response_code.proto
         response_header.proto
@@ -66,10 +69,13 @@ set(PROTO_FILES
         schedule_get_info.proto
         schedule_service.proto
         schedule_sign.proto
+        sidecar_file.proto
+        signature_file.proto
         smart_contract_service.proto
         system_delete.proto
         system_undelete.proto
         throttle_definitions.proto
+        timestamp.proto
         token_associate.proto
         token_burn.proto
         token_create.proto
@@ -90,9 +96,13 @@ set(PROTO_FILES
         token_unpause.proto
         token_update.proto
         token_wipe_account.proto
+        transaction.proto
+        transaction_body.proto
+        transaction_contents.proto
         transaction_get_fast_record.proto
         transaction_get_receipt.proto
         transaction_get_record.proto
+        transaction_list.proto
         transaction_receipt.proto
         transaction_record.proto
         transaction_response.proto
