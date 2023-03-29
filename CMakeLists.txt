@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.21...3.24)
-project(hedera-protobufs-cpp VERSION 0.36.0 DESCRIPTION "Hedera C++ Protobuf Library" LANGUAGES CXX)
+project(hedera-protobufs-cpp VERSION 0.1.0 DESCRIPTION "Hedera C++ Protobuf Library" LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
