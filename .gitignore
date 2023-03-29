@@ -883,6 +883,7 @@ secring.*
 
 ### Ignore Generated Source
 src/proto/*.proto
+src/proto/state
 
 ### Ignore Generated Package Files
 package
