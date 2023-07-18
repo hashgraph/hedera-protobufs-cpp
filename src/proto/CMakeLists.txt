@@ -1,6 +1,5 @@
 # Begin Protobuf Definitions
 set(PROTO_FILES
-        account_balance_file.proto
         basic_types.proto
         consensus_create_topic.proto
         consensus_delete_topic.proto
@@ -9,8 +8,6 @@ set(PROTO_FILES
         consensus_submit_message.proto
         consensus_topic_info.proto
         consensus_update_topic.proto
-        contract_action.proto
-        contract_bytecode.proto
         contract_call.proto
         contract_call_local.proto
         contract_create.proto
@@ -18,7 +15,6 @@ set(PROTO_FILES
         contract_get_bytecode.proto
         contract_get_info.proto
         contract_get_records.proto
-        contract_state_change.proto
         contract_update.proto
         contract_types.proto
         crypto_add_live_hash.proto
@@ -52,15 +48,12 @@ set(PROTO_FILES
         get_account_details.proto
         get_by_key.proto
         get_by_solidity_id.proto
-        hash_object.proto
-        mirror_network_service.proto
         network_get_execution_time.proto
         network_get_version_info.proto
         network_service.proto
         node_stake_update.proto
         query.proto
         query_header.proto
-        record_stream_file.proto
         response.proto
         response_code.proto
         response_header.proto
@@ -70,8 +63,6 @@ set(PROTO_FILES
         schedule_get_info.proto
         schedule_service.proto
         schedule_sign.proto
-        sidecar_file.proto
-        signature_file.proto
         smart_contract_service.proto
         system_delete.proto
         system_undelete.proto
