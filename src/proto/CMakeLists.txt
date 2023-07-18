@@ -20,6 +20,7 @@ set(PROTO_FILES
         contract_get_records.proto
         contract_state_change.proto
         contract_update.proto
+        contract_types.proto
         crypto_add_live_hash.proto
         crypto_approve_allowance.proto
         crypto_create.proto
