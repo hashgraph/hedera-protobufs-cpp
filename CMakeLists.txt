@@ -42,6 +42,7 @@ if (PROTO_FILES)
     file(REMOVE ${PROTO_FILES})
 endif ()
 
+file(INSTALL ${hproto_SOURCE_DIR}/mirror/ DESTINATION ${PROTO_SRC}/mirror)
 file(INSTALL ${hproto_SOURCE_DIR}/services/ DESTINATION ${PROTO_SRC})
 file(INSTALL ${hproto_SOURCE_DIR}/sdk/ DESTINATION ${PROTO_SRC})
 
