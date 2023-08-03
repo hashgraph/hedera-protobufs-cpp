@@ -100,7 +100,10 @@ set(PROTO_FILES
         transaction_response.proto
         unchecked_submit.proto
         util_prng.proto
-        util_service.proto)
+        util_service.proto
+
+        mirror/consensus_service.proto
+        mirror/mirror_network_service.proto)
 # End Protobuf Definitions
 
 add_library(hapi STATIC ${PROTO_FILES})
@@ -117,4 +120,3 @@ protobuf_generate(TARGET hapi LANGUAGE grpc GENERATE_EXTENSIONS .grpc.pb.h .grpc
 # Install Library & Headers
 install(TARGETS hapi ARCHIVE DESTINATION lib LIBRARY DESTINATION lib RUNTIME DESTINATION bin)
 install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR} DESTINATION include FILES_MATCHING PATTERN "*.h")
-
