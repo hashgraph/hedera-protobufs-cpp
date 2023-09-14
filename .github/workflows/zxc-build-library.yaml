@@ -95,6 +95,7 @@ jobs:
           buildPreset: ${{ matrix.preset }}-debug
 
       - name: CMake Build (Release)
+        if: github.event.pull_request.merged == true
         uses: lukka/run-cmake@v10
         with:
           configurePreset: ${{ matrix.preset }}-release
@@ -105,6 +106,7 @@ jobs:
         run: echo "short=$(echo -n "${{ github.sha }}" | cut -c1-8)" >> "${GITHUB_OUTPUT}"
 
       - name: Attach Artifact
+        if: github.event.pull_request.merged == true
         uses: actions/upload-artifact@v3
         with:
           name: hapi-library-${{ runner.os }}-${{ steps.sha.outputs.short }}

@@ -12,6 +12,7 @@ on:
       - opened
       - reopened
       - synchronize
+      - closed
 
 
 concurrency:
