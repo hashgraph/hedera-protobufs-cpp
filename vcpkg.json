@@ -1,7 +1,7 @@
 {
   "name": "hedera-protobufs-cpp",
   "version-string": "0.47.0",
-  "builtin-baseline": "680071397677bb123b2f2b0ebe73905feae4a955",
+  "builtin-baseline": "0f9a4f65e4d06fd70a8d839ec3a1eafc05652e70",
   "dependencies": [
     {
       "name": "openssl",
