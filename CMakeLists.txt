@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.21...3.24)
-project(hedera-protobufs-cpp VERSION 0.1.0 DESCRIPTION "Hedera C++ Protobuf Library" LANGUAGES CXX)
+project(hedera-protobufs-cpp VERSION 0.47.0 DESCRIPTION "Hedera C++ Protobuf Library" LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -10,9 +10,9 @@ include(FetchContent)
 
 set(Protobuf_USE_STATIC_LIBS ON)
 
-include(BuildOpenSSL.cmake)
 set(gRPC_SSL_PROVIDER package)
 
+find_package(OpenSSL REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(Protobuf REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
@@ -20,10 +20,10 @@ find_package(re2 CONFIG REQUIRED)
 find_package(c-ares CONFIG REQUIRED)
 find_package(absl CONFIG REQUIRED)
 
-set(HAPI_VERSION_TAG "v0.44.0" CACHE STRING "Use the configured version tag for the Hedera API protobufs")
+set(HAPI_VERSION_TAG "v0.47.0" CACHE STRING "Use the configured version tag for the Hedera API protobufs")
 
 if (HAPI_VERSION_TAG STREQUAL "")
-    set(HAPI_VERSION_TAG "v0.44.0")
+    set(HAPI_VERSION_TAG "v0.47.0")
 endif ()
 
 # Fetch the protobuf definitions
