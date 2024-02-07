@@ -1,10 +1,26 @@
 {
   "name": "hedera-protobufs-cpp",
-  "version-string": "0.30.0",
+  "version-string": "0.47.0",
   "dependencies": [
-    "zlib",
-    "protobuf",
-    "grpc",
-    "upb"
+    {
+      "name": "openssl",
+      "version>=": "3.2.0#2"
+    },
+    {
+      "name": "zlib",
+      "version>=": "1.2.12"
+    },
+    {
+      "name": "protobuf",
+      "version>=": "3.21.6"
+    },
+    {
+      "name": "grpc",
+      "version>=": "1.49.0"
+    },
+    {
+      "name": "upb",
+      "version>=": "2022-06-21"
+    }
   ]
 }
