@@ -32,7 +32,7 @@ jobs:
           echo "::group::Show SemVer Binary Version Info"
           semver --version
           echo "::endgroup::"
-    
+
       - name: Validate HAPI Version Tag
         id: version
         run: |
@@ -43,7 +43,7 @@ jobs:
             echo "::error title=Version Error::The supplied hapi-version-tag parameter (${HAPI_VERSION}) is invalid and does not conform to the semantic versioning specifications."
             exit 2
           fi
-          
+
           [[ "${HAPI_VERSION}" == v* ]] || HAPI_VERSION="v${HAPI_VERSION}"
           echo "number=${HAPI_VERSION}" >> "${GITHUB_OUTPUT}"
 
@@ -59,10 +59,10 @@ jobs:
         include:
           - os: Linux
             preset: linux-x64
-#          - os: macos-latest
-#            preset: macos-x64
-#          - os: windows-latest
-#            preset: windows-x64
+    #          - os: macos-latest
+    #            preset: macos-x64
+    #          - os: windows-latest
+    #            preset: windows-x64
     needs:
       - hapi-version
     steps:
@@ -87,6 +87,11 @@ jobs:
         uses: lukka/run-vcpkg@v10
         with:
           binaryCachePath: ${{ github.workspace }}/b/vcpkg_cache
+
+      - name: Convert VCPkg to Full Clone
+        run: |
+          cd vcpkg
+          git fetch --unshallow --prune
 
       - name: CMake Build (Debug)
         uses: lukka/run-cmake@v10
