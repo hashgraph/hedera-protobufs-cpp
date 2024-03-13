@@ -87,6 +87,8 @@ set(PROTO_FILES
         token_unfreeze_account.proto
         token_unpause.proto
         token_update.proto
+        token_update_nft.proto
+        token_update_nfts.proto
         token_wipe_account.proto
         transaction.proto
         transaction_body.proto
