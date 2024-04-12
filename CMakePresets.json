@@ -83,7 +83,7 @@
         },
         "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": {
           "type": "FILEPATH",
-          "value": "/android-ndk-r25c/build/cmake/android.toolchain.cmake"
+          "value": "~/android-ndk-r25c/build/cmake/android.toolchain.cmake"
         }
       }
     },
