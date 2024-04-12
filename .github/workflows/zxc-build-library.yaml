@@ -120,6 +120,7 @@ jobs:
           ANDROID_NDK_ROOT: ~/android-ndk-r25c/
           ANDROID_NDK_HOME: $ANDROID_NDK_ROOT
           PATH: $ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH
+          VCPKG_FORCE_SYSTEM_BINARIES: 1
         uses: lukka/run-cmake@v10
         with:
           configurePreset: android-arm64-debug
@@ -131,6 +132,7 @@ jobs:
           ANDROID_NDK_ROOT: ~/android-ndk-r25c/
           ANDROID_NDK_HOME: $ANDROID_NDK_ROOT
           PATH: $ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH
+          VCPKG_FORCE_SYSTEM_BINARIES: 1
         uses: lukka/run-cmake@v10
         with:
           configurePreset: android-arm64-release
