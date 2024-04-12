@@ -75,7 +75,7 @@ jobs:
         if: ${{ runner.os == 'Linux' }}
         run: |
           sudo apt-get update
-          sudo apt-get install -y pkg-config linux-headers-5.15.0-79-generic build-essential
+          sudo apt-get install -y pkg-config linux-headers-5.15.0-79-generic build-essential wget unzip
 
       - name: Ensure Binary Cache Path Exists
         run: mkdir -p "${{ github.workspace }}/b/vcpkg_cache"
@@ -105,6 +105,35 @@ jobs:
         with:
           configurePreset: ${{ matrix.preset }}-release
           buildPreset: ${{ matrix.preset }}-release
+
+      - name: Setup Android Build
+        #if: github.event.pull_request.merged == true
+        run: |
+          wget https://dl.google.com/android/repository/android-ndk-r25c-linux.zip
+          unzip android-ndk-r25c-linux.zip
+          rm -rf android-ndk-r25c-linux.zip
+
+      - name: CMake Android Build (Debug)
+        #if: github.event.pull_request.merged == true
+        env:
+          ANDROID_NDK_ROOT: android-ndk-r25c/
+          ANDROID_NDK_HOME: $ANDROID_NDK_ROOT
+          PATH: $ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH
+        uses: lukka/run-cmake@v10
+        with:
+          configurePreset: android-arm64-debug
+          buildPreset: android-arm64-debug
+
+      - name: CMake Android Build (Release)
+        #if: github.event.pull_request.merged == true
+        env:
+          ANDROID_NDK_ROOT: android-ndk-r25c/
+          ANDROID_NDK_HOME: $ANDROID_NDK_ROOT
+          PATH: $ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH
+        uses: lukka/run-cmake@v10
+        with:
+          configurePreset: android-arm64-release
+          buildPreset: android-arm64-release
 
       - name: Compute Short SHA
         id: sha
