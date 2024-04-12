@@ -109,7 +109,7 @@ jobs:
       - name: Setup Android Build
         #if: github.event.pull_request.merged == true
         run: |
-          cd /
+          cd ~
           wget https://dl.google.com/android/repository/android-ndk-r25c-linux.zip
           unzip android-ndk-r25c-linux.zip
           rm -rf android-ndk-r25c-linux.zip
@@ -117,7 +117,7 @@ jobs:
       - name: CMake Android Build (Debug)
         #if: github.event.pull_request.merged == true
         env:
-          ANDROID_NDK_ROOT: android-ndk-r25c/
+          ANDROID_NDK_ROOT: ~/android-ndk-r25c/
           ANDROID_NDK_HOME: $ANDROID_NDK_ROOT
           PATH: $ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH
         uses: lukka/run-cmake@v10
@@ -128,7 +128,7 @@ jobs:
       - name: CMake Android Build (Release)
         #if: github.event.pull_request.merged == true
         env:
-          ANDROID_NDK_ROOT: android-ndk-r25c/
+          ANDROID_NDK_ROOT: ~/android-ndk-r25c/
           ANDROID_NDK_HOME: $ANDROID_NDK_ROOT
           PATH: $ANDROID_NDK_ROOT/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH
         uses: lukka/run-cmake@v10
