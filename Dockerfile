@@ -1,6 +1,7 @@
 FROM ubuntu:jammy
 
 ENV DEBIAN_FRONTEND noninteractive
+ARG BRANCH_NAME
 
 RUN \
   apt-get update && \
@@ -46,11 +47,11 @@ RUN git clone https://github.com/hashgraph/hedera-protobufs-cpp.git
 WORKDIR /hedera-protobufs-cpp
 
 # Change to working branch
-RUN git checkout origin/00042-add-android-and-ios-builds
+RUN git checkout origin/$BRANCH_NAME
 
 # Update submodule
 RUN git submodule update --init
 
 # Build
-#RUN cmake --preset android-arm64-release
-#RUN cmake --build --preset android-arm64-release
+RUN cmake --preset android-arm64-release
+RUN cmake --build --preset android-arm64-release
