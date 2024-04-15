@@ -84,7 +84,7 @@ jobs:
         #if: github.event.pull_request.merged == true
         run: |
           docker build -t ubuntu-jammy-hedera-protobufs-cpp-android-build . --build-arg BRANCH_NAME=${{ github.head_ref }}
-          docker cp $(docker create --name ubuntu-jammy-hedera-protobufs-cpp-android-build:latest):/hedera-protobufs-cpp/package .
+          docker cp $(docker create ubuntu-jammy-hedera-protobufs-cpp-android-build:latest):/hedera-protobufs-cpp/package .
 
       - name: Install CMake & Ninja
         uses: lukka/get-cmake@latest
