@@ -54,4 +54,6 @@ RUN git submodule update --init
 
 # Build
 RUN cmake --preset android-arm64-release
+RUN cmake --preset android-arm64-debug
 RUN cmake --build --preset android-arm64-release
+RUN cmake --build --preset android-arm64-debug
