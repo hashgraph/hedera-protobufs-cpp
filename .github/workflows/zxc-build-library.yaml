@@ -83,7 +83,7 @@ jobs:
       - name: CMake Android Build
         if: github.event.pull_request.merged == true
         run: |
-          docker build -t ubuntu-jammy-hedera-protobufs-cpp-android-build . --build-arg BRANCH_NAME=${{ github.head_ref }}
+          docker build -t ubuntu-jammy-hedera-protobufs-cpp-android-build . --build-arg BRANCH_NAME=${{ github.base_ref }}
           docker cp $(docker create ubuntu-jammy-hedera-protobufs-cpp-android-build:latest):/hedera-protobufs-cpp/package .
 
       - name: Install CMake & Ninja
