@@ -2,10 +2,10 @@
   "name": "hedera-protobufs-cpp",
   "version-string": "0.1.0",
   "dependencies": [
-     "openssl",
-     "zlib",
-     "protobuf",
-     "grpc",
-     "upb"
-  ] 
+    "openssl",
+    "zlib",
+    "protobuf",
+    "grpc",
+    "upb"
+  ]
 }

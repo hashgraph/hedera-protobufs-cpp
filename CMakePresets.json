@@ -45,6 +45,49 @@
       }
     },
     {
+      "name": "vcpkg-android-base",
+      "hidden": true,
+      "displayName": "Android VCPkg Base Build",
+      "description": "Configured via the Android NDK toolchain",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "installDir": "${sourceDir}/package",
+      "generator": "Ninja Multi-Config",
+      "cacheVariables": {
+        "ANDROID_ABI": {
+          "type": "STRING",
+          "value": "arm64-v8a"
+        },
+        "ANDROID_PLATFORM": {
+          "type": "STRING",
+          "value": "21"
+        },
+        "CMAKE_SYSTEM_NAME": {
+          "type": "STRING",
+          "value": "Android"
+        },
+        "CMAKE_SYSTEM_PROCESSOR": {
+          "type": "STRING",
+          "value": "aarch64"
+        },
+        "CMAKE_SYSTEM_VERSION": {
+          "type": "STRING",
+          "value": "21"
+        },
+        "CMAKE_TOOLCHAIN_FILE": {
+          "type": "FILEPATH",
+          "value": "${sourceDir}/vcpkg/scripts/buildsystems/vcpkg.cmake"
+        },
+        "HAPI_VERSION_TAG": {
+          "type": "STRING",
+          "value": "$env{HAPI_VERSION_TAG}"
+        },
+        "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": {
+          "type": "FILEPATH",
+          "value": "/android-ndk-r25c/build/cmake/android.toolchain.cmake"
+        }
+      }
+    },
+    {
       "name": "linux-x64-release",
       "inherits": ["vcpkg-base"],
       "cacheVariables": {
@@ -153,6 +196,34 @@
         "CMAKE_BUILD_TYPE": {
           "type": "STRING",
           "value": "Debug"
+        }
+      }
+    },
+    {
+      "name": "android-arm64-debug",
+      "inherits": ["vcpkg-android-base"],
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": {
+          "type": "STRING",
+          "value": "arm64-android"
+        },
+        "CMAKE_BUILD_TYPE": {
+          "type": "STRING",
+          "value": "Debug"
+        }
+      }
+    },
+    {
+      "name": "android-arm64-release",
+      "inherits": ["vcpkg-android-base"],
+      "cacheVariables": {
+        "VCPKG_TARGET_TRIPLET": {
+          "type": "STRING",
+          "value": "arm64-android"
+        },
+        "CMAKE_BUILD_TYPE": {
+          "type": "STRING",
+          "value": "Release"
         }
       }
     }
@@ -220,6 +291,22 @@
       "displayName": "MSVC Debug (x64)",
       "description": "Build MSVC Configurations",
       "configuration": "Debug",
+      "targets": ["install"]
+    },
+    {
+      "name": "android-arm64-debug",
+      "configurePreset": "android-arm64-debug",
+      "displayName": "Build ninja-multi-vcpkg",
+      "description": "Build ninja-multi-vcpkg Configurations",
+      "configuration": "Debug",
+      "targets": ["install"]
+    },
+    {
+      "name": "android-arm64-release",
+      "configurePreset": "android-arm64-release",
+      "displayName": "Build ninja-multi-vcpkg",
+      "description": "Build ninja-multi-vcpkg Configurations",
+      "configuration": "Release",
       "targets": ["install"]
     }
   ],
