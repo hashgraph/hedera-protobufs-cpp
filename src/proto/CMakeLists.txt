@@ -51,7 +51,10 @@ set(PROTO_FILES
         network_get_execution_time.proto
         network_get_version_info.proto
         network_service.proto
+        node_create.proto
+        node_delete.proto
         node_stake_update.proto
+        node_update.proto
         query.proto
         query_header.proto
         response.proto
@@ -82,6 +85,7 @@ set(PROTO_FILES
         token_grant_kyc.proto
         token_mint.proto
         token_pause.proto
+        token_reject.proto
         token_revoke_kyc.proto
         token_service.proto
         token_unfreeze_account.proto
