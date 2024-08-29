@@ -17,7 +17,7 @@ permissions:
 jobs:
   hapi-version:
     name: Version Check
-    runs-on: [self-hosted, Linux, xlarge, ephemeral]
+    runs-on: client-sdk-linux-medium
     outputs:
       tag: ${{ steps.version.outputs.tag }}
     steps:
@@ -49,11 +49,11 @@ jobs:
 
   build:
     name: Build
-    runs-on: [self-hosted, "${{ matrix.os }}", xlarge, ephemeral]
+    runs-on: client-sdk-${{ matrix.os }}-large
     strategy:
       matrix:
         include:
-          - os: Linux
+          - os: linux
             preset: linux-x64
     #          - os: macos-latest
     #            preset: macos-x64
