@@ -71,8 +71,11 @@ set(PROTO_FILES
         system_undelete.proto
         throttle_definitions.proto
         timestamp.proto
+        token_airdrop.proto
         token_associate.proto
         token_burn.proto
+        token_cancel_airdrop.proto
+        token_claim_airdrop.proto
         token_create.proto
         token_delete.proto
         token_dissociate.proto
