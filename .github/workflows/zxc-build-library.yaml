@@ -83,7 +83,7 @@ jobs:
           docker cp $(docker create ubuntu-jammy-hedera-protobufs-cpp-android-build:latest):/hedera-protobufs-cpp/package .
 
       - name: Install CMake & Ninja
-        uses: lukka/get-cmake@070a0507a7abe157ef918deec391da1be197d2d1 # v3.30.3
+        uses: lukka/get-cmake@b516803a3c5fac40e2e922349d15cdebdba01e60 # v3.30.5
 
       - name: Setup VCPkg
         uses: lukka/run-vcpkg@5e0cab206a5ea620130caf672fce3e4a6b5666a1 # v11.5
