@@ -1,5 +1,6 @@
 # Begin Protobuf Definitions
 set(PROTO_FILES
+        address_book_service.proto
         basic_types.proto
         consensus_create_topic.proto
         consensus_delete_topic.proto
