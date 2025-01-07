@@ -96,7 +96,7 @@ jobs:
         uses: lukka/get-cmake@5979409e62bdf841487c5fb3c053149de97a86d3 # v3.31.2
 
       - name: Setup VCPkg
-        uses: lukka/run-vcpkg@5e0cab206a5ea620130caf672fce3e4a6b5666a1 # v11.5
+        uses: step-security/run-vcpkg@fbc33ad33d903ec30b90a53d535afb6d03050ce2 # v11.5
         with:
           binaryCachePath: ${{ github.workspace }}/b/vcpkg_cache
 
